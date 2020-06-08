@@ -12,22 +12,26 @@ stages:
   - job: Firstjob
     steps:
     - bash: echo Build firstJob
-- stage: SecondJob
   jobs:
   - job: SecondJob
     steps:
     - bash: echo Build SecondJob
 - stage: DevDeploy
+  dependsOn: Build
   jobs:
   - job: DevDeployJob
     steps:
     - bash: echo Build DevDeploy
 - stage: QADeploy
+  dependsOn: Build
   jobs:
   - job: QAdeployJob
     steps:
     - bash: echo Build QaDeployJob
 - stage: ProdDeploy
+  dependsOn:
+  -QADeploy
+  -DevDeployJob
   jobs:
   - job: prodJob
     steps:
@@ -35,4 +39,7 @@ stages:
 
 pool:
   vmImage: 'ubuntu-latest'
+
+
+
 
