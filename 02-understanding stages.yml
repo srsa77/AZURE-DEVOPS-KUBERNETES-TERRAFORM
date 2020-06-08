@@ -6,9 +6,6 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
-
 stages:
 - stage: Build
   jobs:
@@ -34,11 +31,14 @@ jobs:
 
 Stage: ProdDeploy
 obs:
-  - job: SecondJOb
+  - job: prodJob
     steps:
-    - bash: echo Build SecondJob
+    - bash: echo Build profJob
 
+pool:
+  vmImage: 'ubuntu-latest'
 
+steps:
 - script: echo job1, step1!
   displayName: 'Run a one-line script'
 
