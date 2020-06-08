@@ -13,11 +13,16 @@ stages:
     steps:
     - bash: echo Build firstJob
     - bash: $(PipelineLevelVariable)
-    - bash: $(PipelineLevelVariable)
-    - bash: $(PipelineLevelVariable)
-  - job: SecondJob
-    steps:
-    - bash: echo Build SecondJob
+    - bash: $(Build.BuildNumber)
+    - bash: $(Build.BuildId)
+    - bash: $(Build.SourceBranchName)
+    - bash: $(Build.SourcesDirectory)
+    - bash: ls -R $(System.DefaultWorkingDirectory)
+    - bash: $(Build.ArtifactStagingDirectory)
+
+  # - job: SecondJob
+  #   steps:
+  #   - bash: echo Build SecondJob
 # - stage: DevDeploy
 #   variables: 
 #     environment: Dev
