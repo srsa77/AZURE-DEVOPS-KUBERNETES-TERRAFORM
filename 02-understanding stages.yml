@@ -12,7 +12,7 @@ stages:
   - job: Firstjob
     steps:
     - bash: echo Build firstJob
-- stage: Second Job
+- stage: SecondJob
   jobs:
   - job: SecondJob
     steps:
