@@ -13,33 +13,35 @@ stages:
     steps:
     - bash: echo Build firstJob
     - bash: $(PipelineLevelVariable)
+    - bash: $(PipelineLevelVariable)
+    - bash: $(PipelineLevelVariable)
   - job: SecondJob
     steps:
     - bash: echo Build SecondJob
-- stage: DevDeploy
-  variables: 
-    environment: Dev
-  dependsOn: Build
-  jobs:
-  - job: DevDeployJob
-    steps:
-    - bash: echo $(environment)DevDeploy
-- stage: QADeploy
-  variables: 
-    environment: Dev
-  dependsOn: Build
-  jobs:
-  - job: QAdeployJob
-    steps:
-    - bash: echo $(environment)DevDeploy
-- stage: ProdDeploy
-  dependsOn:
-  - QADeploy
-  - DevDeploy
-  jobs:
-  - job: prodJob
-    steps:
-    - bash: echo Build profJob
+# - stage: DevDeploy
+#   variables: 
+#     environment: Dev
+#   dependsOn: Build
+#   jobs:
+#   - job: DevDeployJob
+#     steps:
+#     - bash: echo $(environment)DevDeploy
+# - stage: QADeploy
+#   variables: 
+#     environment: Dev
+#   dependsOn: Build
+#   jobs:
+#   - job: QAdeployJob
+#     steps:
+#     - bash: echo $(environment)DevDeploy
+# - stage: ProdDeploy
+#   dependsOn:
+#   - QADeploy
+#   - DevDeploy
+#   jobs:
+#   - job: prodJob
+#     steps:
+#     - bash: echo Build profJob
 
 pool:
   vmImage: 'ubuntu-latest'
