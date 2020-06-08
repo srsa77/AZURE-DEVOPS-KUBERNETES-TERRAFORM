@@ -12,7 +12,6 @@ stages:
   - job: Firstjob
     steps:
     - bash: echo Build firstJob
-    - bash: $(PipelineLevelVariable)
     - bash: $(Build.BuildNumber)
     - bash: $(Build.BuildId)
     - bash: $(Build.SourceBranchName)
